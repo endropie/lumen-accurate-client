@@ -13,7 +13,7 @@
             "email": "hendrowibo@msn.com"
         }
     ],
-    "require-dev": {
+    "require": {
         "guzzlehttp/guzzle": "^7.5"
     }
 }
