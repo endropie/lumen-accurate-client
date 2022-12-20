@@ -78,9 +78,13 @@ class Manager extends Facade
 
     public function on ($module, $action='list', $values=[], $method=null)
     {
-        $url = $this->url(config("accurate.modules.$module.$action"));
+        $cnf = config("accurate.modules.$module.$action");
 
-        $exe = $method
+        if (!$cnf) abort(500, '$module & $action variable failed of accurate on');
+
+        $url = $this->url($cnf);
+
+        $exe = $method == null
         ? $this->client()->{$method}($url, $values)
         : $this->client()->asForm()->get($url, $values);
 
