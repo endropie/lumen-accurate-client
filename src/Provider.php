@@ -10,7 +10,7 @@ class Provider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('accurate', function ($app) {
+        $this->app->singleton('accurate', function ($app) {
             return new Manager($app);
         });
 
