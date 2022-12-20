@@ -1,6 +1,6 @@
 {
     "name": "endropie/lumen-accurate-client",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "autoload": {
         "psr-4": {
