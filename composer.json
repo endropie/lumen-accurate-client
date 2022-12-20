@@ -1,0 +1,18 @@
+{
+    "name": "endropie/lumen-accurate-client",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "Endropie\\LumenAccurateClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "endropie",
+            "email": "hendrowibo@msn.com"
+        }
+    ],
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
