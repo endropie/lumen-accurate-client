@@ -33,16 +33,24 @@ class Accurate extends BaseFacade {
                 config()->set('accurate.session.auth', $auth);
                 $openDB =  app('accurate')->setDatabase(config('accurate.database.id')) ;
 
-                if($redirected = request('redirect_app'))
+                if($redirectURL = request('redirect')['url'] ?? null)
                 {
                     $token = app('accurate')->getParseDataCallback();
 
                     $sdata = http_build_query(['X-Accurate' => $token]);
                     $sdata = (strpos($sdata, '?') === false)
                         ? stringable($sdata)->start('?') : stringable($sdata)->start('&');
-                    $redirected .= $sdata;
 
-                    return redirect($redirected);
+                    if ($redirectPath = request('redirect', [])['path'] ?? null)
+                    {
+                        $redirectHash = strlen(request('redirect', [])['hash'] ?? '') ? '/#' : '';
+                        $redirectPath = stringable($redirectPath)->start('/');
+                        header('Location: ' . $redirectURL . $redirectHash . $redirectPath . $sdata, true, 302);
+                        exit();
+                    }
+
+                    $redirectURL .= $sdata;
+                    return redirect($redirectURL);
                 }
 
                 return response()->json(['X-Accurate' => app('accurate')->getParseDataCallback()]);

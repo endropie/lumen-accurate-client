@@ -2,6 +2,7 @@
 
 namespace Endropie\LumenAccurateClient\Tools;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 
 class Manager extends Facade
@@ -50,9 +51,10 @@ class Manager extends Facade
 
     public function callbackUrl ()
     {
-        return request()->getSchemeAndHttpHost()
-            . (string) stringable(request('redirect_uri', config('accurate.route.callback', '/accurate/callback')))->start('/')
-            . (string) (request()->has('redirect_app') ? "?redirect_app=". request('redirect_app') : "");
+        $uriCallback = (string) stringable(request('redirect_uri', config('accurate.route.callback', '/accurate/callback')))->start('/');
+        $parameter = http_build_query(["redirect" => request()->get('redirect', [])]);
+        return request()->getSchemeAndHttpHost() . $uriCallback . "?" . $parameter;
+
     }
 
     public function beforeLogin()
