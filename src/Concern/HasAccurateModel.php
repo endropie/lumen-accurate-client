@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Endropie\LumenAccurateClient\Concern;
 
 use Illuminate\Support\Arr;
 
