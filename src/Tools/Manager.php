@@ -85,8 +85,8 @@ class Manager extends Facade
         $url = $this->url($cnf);
 
         $exe = $method == null
-        ? $this->client()->{$method}($url, $values)
-        : $this->client()->asForm()->get($url, $values);
+            ? $this->client()->post($url, $values)
+            : $this->client()->{$method}($url, $values);
 
         return $exe->throw();
     }

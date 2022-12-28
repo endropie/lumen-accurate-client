@@ -36,7 +36,7 @@ trait HasAccurateModel
 
     public function getAccurateField($key, $defalut = null)
     {
-        return Arr::get($this->attributesToArray(), str_replace('->', '.', $this->accFieldName ."->$key"), $defalut);
+        return Arr::get($this->attributesToArray(), str_replace('->', '.', $this->getAccFieldName() ."->$key"), $defalut);
     }
 
     public function getLoadAccurateDetail(array $parameter = [])
